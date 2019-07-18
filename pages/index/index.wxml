@@ -1,0 +1,47 @@
+<!--index.wxml-->
+<view class="main">
+<!-- 公共头部 -->
+<MyTitle></MyTitle>
+<!-- 导航条 -->
+<view class="nav_list">
+<!-- 小程序自带的滚动标签  scroll-x 就可以横向滚动 -->
+  <scroll-view class="nav" scroll-x>
+    <view bindtap="activeNav" data-index="{{index}}" class="nav_item {{ index===scrollActive ? 'active' : '' }}" wx:for="{{navList}}" wx:key="{{ index }}">
+      {{ item.text }}
+    </view>
+  </scroll-view>
+</view>
+
+<!-- 轮播图 -->
+<view class="slides">
+  <swiper autoplay indicator-dots circular>
+   <swiper-item wx:for="{{ swiperList }}" wx:key="{{index}}">
+     <navigator url="/">
+       <image mode="widthFix" src="{{item.imgSrc}}"></image>
+     </navigator>
+   </swiper-item>
+  </swiper>
+</view>
+
+<!-- 视频封面展示 -->
+<view class="video_cover">
+  <navigator class="video_item" wx:for="{{ videosList }}">
+    <view class="video_img">
+      <image mode="widthFix" src="{{ item.imgSrc }}"></image>
+      <view class="count_wrap">
+      <!-- 播放量 -->
+        <view class="play_count">
+          <text class="iconfont icon-bofangqizanting"></text>
+          <text>{{item.playCount}}</text>
+        </view>
+        <!-- 评论数 -->
+        <view class="comment_count">
+          <text class="iconfont icon-custom-comment"></text>
+          <text>{{item.commentCount}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="video_desc">{{ item.desc }}</view>
+  </navigator>
+</view>
+</view>
